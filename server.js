@@ -2,6 +2,10 @@ const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
 const cors = require("cors");
+require("dotenv").config();
+
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || "localhost";
 
 const app = express();
 const server = http.createServer(app);
@@ -41,4 +45,4 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(8000, "0.0.0.0", () => console.log("Server running on port 8000"));
+server.listen(PORT, HOST, () => console.log(`Server running on port ${HOST} : ${PORT}`));
