@@ -4,8 +4,8 @@ const socketIo = require("socket.io");
 const cors = require("cors");
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || "localhost";
+const PORT = process.env.PORT || 8000;
+const HOST = process.env.HOST || '0.0.0.0'
 
 const app = express();
 const server = http.createServer(app);
@@ -17,6 +17,10 @@ const io = socketIo(server, {
 });
 
 app.use(cors());
+// Test route
+app.get("/", (req, res) => {
+    res.send("Server is running!");
+  });
 
 io.on("connection", (socket) => {
     console.log("New client connected:", socket.id);
